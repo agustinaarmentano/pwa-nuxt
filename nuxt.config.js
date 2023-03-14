@@ -52,11 +52,24 @@ export default {
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
-      name: 'Nuxt.js PWA Lisa',
-      short_name: 'Nuxt.js PWA',
+      name: 'Nuxt.js PWA',
+      short_name: 'PWA',
       lang: 'en',
       display: 'standalone',
     },
+  },
+  // Build Configuration: https://go.nuxtjs.dev/config-build
+  build: {
+    splitChunks: {
+      pages: true
+    },
+    extend(config, ctx) {
+      config.module.rules.push({
+        test: /\.md$/,
+        loader: 'frontmatter-markdown-loader',
+        include: path.resolve(__dirname, 'contents'),
+      })
+    }
   },
   workbox: {
     runtimeCaching: [
@@ -68,7 +81,7 @@ export default {
       },
     ],
     importScripts: [
-      'custom-sw.js'
+      'custom-sw.js',
     ],
   },
 
@@ -88,17 +101,6 @@ export default {
           success: colors.green.accent3
         }
       }
-    }
-  },
-
-  // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-    extend(config, ctx) {
-      config.module.rules.push({
-        test: /\.md$/,
-        loader: 'frontmatter-markdown-loader',
-        include: path.resolve(__dirname, 'contents'),
-      })
     }
   },
 }

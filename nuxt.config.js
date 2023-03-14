@@ -58,11 +58,11 @@ export default {
       lang: 'en',
       display: 'standalone',
     },
-    workbox: {
-      importScripts: [
-        'custom-sw.js'
-      ],
-    }
+  },
+  workbox: {
+    importScripts: [
+      'custom-sw.js'
+    ],
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
@@ -86,5 +86,12 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-  }
+    extend(config, ctx) {
+      config.module.rules.push({
+        test: /\.md$/,
+        loader: 'frontmatter-markdown-loader',
+        include: path.resolve(__dirname, 'contents'),
+      })
+    }
+  },
 }

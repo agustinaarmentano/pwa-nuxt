@@ -1,4 +1,4 @@
-importScripts('./js/inter.js');
+// importScripts('./js/inter.js');
 
 const STATIC_CACHE = "static-v2";
 
@@ -34,7 +34,7 @@ self.addEventListener("push", (e) => {
 self.addEventListener("sync", async (e) => {
   console.log('evento sync')
   if(e.tag === 'post-send'){
-    alertarSync()
+    // alertarSync()
     console.log('ejecuto la funcion que necesito')
   }
 })

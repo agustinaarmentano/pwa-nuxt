@@ -71,19 +71,19 @@ export default {
       })
     }
   },
-  // workbox: {
-  //   runtimeCaching: [
-  //     {
-  //       urlPattern: 'https://fonts.googleapis.com/.*',
-  //       handler: 'cacheFirst',
-  //       method: 'GET',
-  //       strategyOptions: { cacheableResponse: { statuses: [0, 200] } }
-  //     },
-  //   ],
-  //   importScripts: [
-  //     'custom-sw.js',
-  //   ],
-  // },
+  workbox: {
+    runtimeCaching: [
+      {
+        urlPattern: 'https://fonts.googleapis.com/.*',
+        handler: 'cacheFirst',
+        method: 'GET',
+        strategyOptions: { cacheableResponse: { statuses: [0, 200] } }
+      },
+    ],
+    importScripts: [
+      'custom-sw.js',
+    ],
+  },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {

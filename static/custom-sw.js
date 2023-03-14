@@ -1,11 +1,10 @@
 importScripts('./js/inter.js');
 
-const STATIC_CACHE = "static-v1";
+const STATIC_CACHE = "my-cache";
 
 const APP_SHELL = [
   "/",
   "index.html",
-  "app.html",
   "icon.png"
 ];
 

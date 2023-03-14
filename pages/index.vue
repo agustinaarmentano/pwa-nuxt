@@ -15,6 +15,7 @@
     <v-col class="text-center">
       <v-btn id="boton" @click="post()">petición post</v-btn>
       <p v-if="post_success">✅ peticion realizada</p>
+      <p v-if="sync">Perdiste tu internet y ya volvio 😄</p>
     </v-col>
   </v-row>
 </template>
@@ -45,6 +46,9 @@ export default {
   computed:{
     post_success(){
       return this.$store.state.post_success
+    },
+    sync(){
+      return this.$store.state.sync
     }
   }
 }

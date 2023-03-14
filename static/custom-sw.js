@@ -33,8 +33,8 @@ self.addEventListener("push", (e) => {
 })
 self.addEventListener("sync", async (e) => {
   console.log('evento sync')
+  alertarSync()
   if(e.tag === 'post-send'){
-    alertarSync()
     console.log('ejecuto la funcion que necesito')
   }
 })

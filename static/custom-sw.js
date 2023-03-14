@@ -1,6 +1,6 @@
 importScripts('./js/inter.js');
 
-const STATIC_CACHE = "static-v1";
+const STATIC_CACHE = "static-v2";
 
 const APP_SHELL = [
   "/",

@@ -81,7 +81,7 @@ dist
 .idea
 
 # Service worker
-# sw.js
+sw.js
 
 # macOS
 .DS_Store

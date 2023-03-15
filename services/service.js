@@ -12,16 +12,17 @@ export default (context) => ({
     .then(data => data);
   },
   post(data) {
+    const local = localStorage.getItem('AccessToken');
+    let body = (!data && local) ? local : data
     return fetch('https://jsonplaceholder.typicode.com/posts', {
       method: 'POST',
-      body: JSON.stringify(data),
+      body: JSON.stringify(body),
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
       },
     })
       .then(async (response) => {
-        console.log(context, 'context')
-        console.log(this.$store, 'store')
+        if(local) localStorage.removeItem('POST_PENDING');
         this.$store.commit('SET_POST_SUCCESS', true);
         setTimeout(() => {
           this.$store.commit('SET_POST_SUCCESS', false);
@@ -31,6 +32,7 @@ export default (context) => ({
       })
       .catch((err) => {
         console.log(err);
+        localStorage.setItem('POST_PENDING', data);
         registerBackgroundSync();
       });
   }

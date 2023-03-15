@@ -1,4 +1,3 @@
-
 export default (context) => {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.getRegistrations().then((registrations) => {

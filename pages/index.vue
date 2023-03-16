@@ -33,7 +33,7 @@
         </v-col>
         <v-col cols="12" >
           <v-progress-circular
-            v-if="post_loading && !post_success"
+            v-if="post_loading"
             :size="50"
             color="pink"
             indeterminate
@@ -41,7 +41,7 @@
         </v-col>
         <v-col cols="12" >
           <p v-if="post_success">✅ peticion realizada {{ 'titulo:' + this.form.title + ' y body:' + this.form.body }} ✅</p>
-          <p v-if="sync">Se activa función luego de post fallido 🥰</p>
+          <p v-if="sync">Se activa función luego de post fallido 🥰 {{ post_pending }}</p>
         </v-col>
       </v-row>
     </v-col>
@@ -67,6 +67,8 @@ export default {
     },
     async post(){
       this.$store.commit('SET_POST_LOADING', true);
+      const data = JSON.stringify(this.form)
+      localStorage.setItem('postPending', data);
       this.$post(this.form).then(() => {
         this.$store.commit('SET_POST_LOADING', false);
         setTimeout(() => {
@@ -76,19 +78,21 @@ export default {
             userId: 1,
           }
         }, "4000");
-      }
-      )
+      })
     }
   },
   computed:{
     post_success(){
       return this.$store.state.post_success
     },
+    post_loading(){
+      return this.$store.state.post_loading
+    },
     sync(){
       return this.$store.state.sync
     },
-    post_loading(){
-      return this.$store.state.post_loading
+    post_pending(){
+      return this.$store.state.post_pending
     }
   }
 }

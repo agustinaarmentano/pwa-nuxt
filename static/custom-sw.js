@@ -17,13 +17,6 @@ self.addEventListener("install", (e) => {
 });
 self.addEventListener("fetch", (e) => {
   console.log('se capto el evento fetch', e)
-  // e.respondWith(
-  //   fetch(e.request).catch(() => {
-  //     return new Response(JSON.stringify({ error: 'No internet connection' }), {
-  //       headers: { 'Content-Type': 'application/json' }
-  //     })
-  //   })
-  // )
 })
 self.addEventListener("push", (e) => {
   console.log('se capto el evento push', e)
@@ -31,9 +24,7 @@ self.addEventListener("push", (e) => {
 
 })
 self.addEventListener("sync", async (e) => {
-  console.log('evento sync')
   if(e.tag === 'post-send'){
     alertarSync()
-    console.log('ejecuto la funcion que necesito')
   }
 })

@@ -47,10 +47,9 @@
     </v-col>
   </v-row> -->
   <v-row>
-    {{ photo }}
     <!-- <input type="file" accept="image/*" capture="camera" @change="handleFileUpload"> -->
     <div v-if="imageUrl">
-      <img :src="imageUrl">
+      <img :src="imageUrl" max-heigth="300" >
     </div>
     <v-col
       v-for="n in 9"
@@ -79,7 +78,7 @@
         </template>
       </v-img>
     </v-col>
-    <v-bottom-navigation v-model="value">
+    <v-bottom-navigation v-model="value" fixed>
       <v-btn height="100%" >
         <v-file-input
           class="ml-2"

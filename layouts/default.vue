@@ -1,29 +1,5 @@
 <template>
   <v-app dark>
-    <v-navigation-drawer
-      v-model="drawer"
-      :mini-variant="miniVariant"
-      :clipped="clipped"
-      fixed
-      app
-    >
-      <v-list>
-        <v-list-item
-          v-for="(item, i) in items"
-          :key="i"
-          :to="item.to"
-          router
-          exact
-        >
-          <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
     <v-app-bar
       :clipped-left="clipped"
       fixed
@@ -36,29 +12,13 @@
         <Nuxt />
       </v-container>
     </v-main>
-    <v-navigation-drawer
-      v-model="rightDrawer"
-      :right="right"
-      temporary
-      fixed
-    >
-      <v-list>
-        <v-list-item @click.native="right = !right">
-          <v-list-item-action>
-            <v-icon light>
-              mdi-repeat
-            </v-icon>
-          </v-list-item-action>
-          <v-list-item-title>Switch drawer (click me)</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-    <v-footer
-      :absolute="!fixed"
-      app
-    >
-      <span>&copy; {{ new Date().getFullYear() }}</span>
-    </v-footer>
+    <v-bottom-navigation v-model="value">
+      <v-btn value="photoButtom">
+        <!-- <span>Cargar foto</span> -->
+
+        <v-icon x-large>mdi-camera</v-icon>
+      </v-btn>
+    </v-bottom-navigation>
   </v-app>
 </template>
 
@@ -70,6 +30,8 @@ export default {
       clipped: false,
       drawer: false,
       fixed: false,
+      value:'',
+      photoButtom:'',
       items: [
         {
           icon: 'mdi-apps',
@@ -77,7 +39,6 @@ export default {
           to: '/'
         }
       ],
-      miniVariant: false,
       right: true,
       rightDrawer: false,
       title: 'Vuetify.js'

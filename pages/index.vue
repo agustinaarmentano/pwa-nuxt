@@ -1,5 +1,5 @@
 <template>
-  <v-row>
+  <!-- <v-row>
     <v-col class="text-center">
       <v-btn @click="get()">petición get</v-btn>
       <h3>listado:</h3>
@@ -45,6 +45,38 @@
         </v-col>
       </v-row>
     </v-col>
+  </v-row> -->
+  <v-row>
+    <input type="file" accept="image/*" capture="camera" @change="handleFileUpload">
+    <div v-if="imageUrl">
+      <img :src="imageUrl">
+    </div>
+    <v-col
+      v-for="n in 9"
+      :key="n"
+      class="d-flex child-flex"
+      cols="4"
+    >
+      <v-img
+        :src="`https://picsum.photos/500/300?image=${n * 5 + 10}`"
+        :lazy-src="`https://picsum.photos/10/6?image=${n * 5 + 10}`"
+        aspect-ratio="1"
+        class="grey lighten-2"
+      >
+        <template v-slot:placeholder>
+          <v-row
+            class="fill-height ma-0"
+            align="center"
+            justify="center"
+          >
+            <v-progress-circular
+              indeterminate
+              color="grey lighten-5"
+            ></v-progress-circular>
+          </v-row>
+        </template>
+      </v-img>
+    </v-col>
   </v-row>
 </template>
 
@@ -54,11 +86,13 @@ export default {
   data() {
     return {
       datos: [],
+      selectedImage: null,
       form: {
         title: '',
         body: '',
         userId: 1,
-      }
+      },
+      imageUrl: ''
     }
   },
   methods:{
@@ -79,7 +113,11 @@ export default {
           }
         }, "4000");
       })
-    }
+    },
+    handleFileUpload(event) {
+      const file = event.target.files[0];
+      this.imageUrl = URL.createObjectURL(file);
+    },
   },
   computed:{
     post_success(){

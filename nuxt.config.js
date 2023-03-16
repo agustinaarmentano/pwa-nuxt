@@ -81,7 +81,7 @@ export default {
         strategyOptions: { cacheableResponse: { statuses: [0, 200] } }
       },
       {
-        urlPattern: 'https://picsum.photos/.*',
+        urlPattern: 'https://fastly.picsum.photos/.*',
         handler: 'cacheFirst',
         method: 'GET',
         strategyOptions: { cacheableResponse: { statuses: [0, 200] } }

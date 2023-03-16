@@ -47,8 +47,8 @@
     </v-col>
   </v-row> -->
   <v-row>
-    <h3>agus</h3>
-    <input type="file" accept="image/*" capture="camera" @change="handleFileUpload">
+    {{ photo }}
+    <!-- <input type="file" accept="image/*" capture="camera" @change="handleFileUpload"> -->
     <div v-if="imageUrl">
       <img :src="imageUrl">
     </div>
@@ -62,6 +62,7 @@
         :src="`https://picsum.photos/500/300?image=${n * 5 + 10}`"
         :lazy-src="`https://picsum.photos/10/6?image=${n * 5 + 10}`"
         aspect-ratio="1"
+        max-height="300"
         class="grey lighten-2"
       >
         <template v-slot:placeholder>
@@ -78,6 +79,18 @@
         </template>
       </v-img>
     </v-col>
+    <v-bottom-navigation v-model="value">
+      <v-btn height="100%" >
+        <v-file-input
+          class="ml-2"
+          hide-input
+          truncate-length="1"
+          prepend-icon="mdi-camera-plus"
+          @change="handleFileUpload"
+          :value="photo"
+        ></v-file-input>
+      </v-btn>
+    </v-bottom-navigation>
   </v-row>
 </template>
 
@@ -88,6 +101,7 @@ export default {
     return {
       datos: [],
       selectedImage: null,
+      photo: '',
       form: {
         title: '',
         body: '',
@@ -116,7 +130,8 @@ export default {
       })
     },
     handleFileUpload(event) {
-      const file = event.target.files[0];
+      console.log(event)
+      const file = event;
       this.imageUrl = URL.createObjectURL(file);
     },
   },

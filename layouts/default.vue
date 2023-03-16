@@ -12,13 +12,6 @@
         <Nuxt />
       </v-container>
     </v-main>
-    <v-bottom-navigation v-model="value">
-      <v-btn value="photoButtom">
-        <!-- <span>Cargar foto</span> -->
-
-        <v-icon x-large>mdi-camera</v-icon>
-      </v-btn>
-    </v-bottom-navigation>
   </v-app>
 </template>
 

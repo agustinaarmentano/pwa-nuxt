@@ -49,7 +49,7 @@
   <v-row>
     <!-- <input type="file" accept="image/*" capture="camera" @change="handleFileUpload"> -->
     <div v-if="imageUrl">
-      <img :src="imageUrl" max-heigth="300" >
+      <v-img :src="imageUrl" max-height="300"> </v-img>
     </div>
     <v-col
       v-for="n in 9"
@@ -59,7 +59,6 @@
     >
       <v-img
         :src="`https://picsum.photos/500/300?image=${n * 5 + 10}`"
-        :lazy-src="`https://picsum.photos/10/6?image=${n * 5 + 10}`"
         aspect-ratio="1"
         max-height="300"
         class="grey lighten-2"

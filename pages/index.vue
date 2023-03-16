@@ -47,6 +47,7 @@
     </v-col>
   </v-row> -->
   <v-row>
+    <h3>agus</h3>
     <input type="file" accept="image/*" capture="camera" @change="handleFileUpload">
     <div v-if="imageUrl">
       <img :src="imageUrl">

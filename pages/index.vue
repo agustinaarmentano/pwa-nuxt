@@ -49,7 +49,7 @@
   <v-row>
     <!-- <input type="file" accept="image/*" capture="camera" @change="handleFileUpload"> -->
     <div v-if="imageUrl">
-      <v-img :src="imageUrl" max-height="300"> </v-img>
+      <v-img :src="imageUrl" max-height="500" max-width="500"> </v-img>
     </div>
     <v-col
       v-for="n in 9"

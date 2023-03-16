@@ -72,6 +72,7 @@ export default {
     }
   },
   workbox: {
+    enabled: true,
     runtimeCaching: [
       {
         urlPattern: 'https://fonts.googleapis.com/.*',
@@ -80,7 +81,7 @@ export default {
         strategyOptions: { cacheableResponse: { statuses: [0, 200] } }
       },
       {
-        urlPattern: '`https://picsum.photos/.*',
+        urlPattern: 'https://picsum.photos/.*',
         handler: 'cacheFirst',
         method: 'GET',
         strategyOptions: { cacheableResponse: { statuses: [0, 200] } }

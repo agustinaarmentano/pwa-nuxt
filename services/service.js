@@ -49,5 +49,37 @@ export default (context) => ({
     .catch(async (err) => {
       console.log(err);
     });
+  },
+  getImage(){
+    return fetch('https://patio.dev.cintelink.com.ar/back/images', {
+      method: 'GET'
+    })
+    .then(response => response.json())
+    .then(data => {
+      const datos = data.map(item => {
+        const buffer = Buffer.from(item.image.data)
+        return {
+          type: item.image.contentType,
+          data: buffer
+        }
+      })
+      return datos
+    });
+  },
+  postImage(formData){
+    return fetch('https://patio.dev.cintelink.com.ar/back/images', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      },
+      body: formData,
+    })
+    .then(async (response) => {
+      const data = await response.json();
+      console.log(data);
+    })
+    .catch(async (err) => {
+      console.log(err);
+    });
   }
 })

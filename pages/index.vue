@@ -32,21 +32,43 @@
         </template>
       </v-img>
     </v-col>
-    <v-bottom-navigation height="150" v-model="value" fixed>
-        <!-- <v-form @submit.prevent="submitForm">
-          <v-file-input label="Select file" v-model="file"></v-file-input>
-          <v-btn type="submit">Submit</v-btn>
-        </v-form>
-        <div> -->
-          <form @submit.prevent="submitImage">
-            <input type="file" @change="handleImageChange" ref="imageInput">
-            <button type="submit">Enviar imagen chaat</button>
-          </form>
-        <!-- </div> -->
-        <!-- <form action="https://patio.dev.cintelink.com.ar/back/images" method="POST" enctype="multipart/form-data">
-          <input type="file" name="image_data" id="asd">
-          <button class="d-block" type="submit">enviar img</button>
-        </form> -->
+    <v-bottom-navigation height="80" v-model="value" fixed>
+          <v-dialog
+            v-model="dialog"
+            persistent
+            max-width="600px"
+          >
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn
+                height="100%"
+                value="recent"
+                v-bind="attrs"
+                v-on="on">
+                <v-icon x-large >mdi-camera-plus</v-icon>
+              </v-btn>
+            </template>
+            <v-card>
+              <v-card-title>
+                <span class="text-h5">Subi una nueva imagen</span>
+              </v-card-title>
+              <v-card-text>
+                <v-container>
+                  <form @submit.prevent="submitImage">
+                    <v-row>
+                      <v-col cols="12">
+                        <input type="file" @change="handleImageChange" ref="imageInput">
+                      </v-col>
+                      <v-col cols="12" class="justify-end">
+                        <v-btn @click="dialog = false">Cerrar</v-btn>
+                        <v-btn type="submit" @click="dialog = false">Subir</v-btn>
+                      </v-col>
+                    </v-row>
+                  </form>
+                </v-container>
+                <small>*indicates required field</small>
+              </v-card-text>
+            </v-card>
+          </v-dialog>
     </v-bottom-navigation>
   </v-row>
 </template>
@@ -64,7 +86,8 @@ export default {
         body: '',
         userId: 1,
       },
-      imageUrl: ''
+      imageUrl: '',
+      dialog: false,
     }
   },
   created() {

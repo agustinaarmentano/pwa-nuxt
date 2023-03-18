@@ -32,7 +32,17 @@
         </template>
       </v-img>
     </v-col>
-    <v-bottom-navigation v-model="value" fixed>
+    <v-bottom-navigation height="150" v-model="value" fixed>
+        <v-form @submit.prevent="submitForm">
+          <v-file-input label="Select file" v-model="file"></v-file-input>
+          <v-btn type="submit">Submit</v-btn>
+        </v-form>
+        <div>
+          <form @submit.prevent="submitImage">
+            <input type="file" @change="handleImageChange" ref="imageInput">
+            <button type="submit">Enviar imagen chaat</button>
+          </form>
+        </div>
         <form action="https://patio.dev.cintelink.com.ar/back/images" method="POST" enctype="multipart/form-data">
           <input type="file" name="image_data" id="asd">
           <button class="d-block" type="submit">enviar img</button>
@@ -46,12 +56,9 @@ export default {
   name: 'IndexPage',
   data() {
     return {
-      datos: [],
       imgBackend: null,
       imgNoBuffer: null,
-      selectedImage: null,
-      image_data: null,
-      agus: '',
+      image: null,
       form: {
         title: '',
         body: '',
@@ -64,8 +71,33 @@ export default {
     this.getImg()
   },
   methods:{
-    postImg(img){
-      this.$postImage(img)
+    // chat
+    handleImageChange(event) {
+      this.image = event.target.files[0]
+    },
+    submitImage() {
+      const formData = new FormData()
+      formData.append('image_data', this.image)
+
+      fetch('https://patio.dev.cintelink.com.ar/back/images', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => {
+        console.log(response.json())
+      })
+      .catch(error => {
+        console.log(error)
+      })
+    },
+    submitForm(event){
+      console.log('submit 1')
+      console.log(this.file)
+      console.log(event.target[0])
+    },
+    submitForm2(event){
+      console.log('submit 2')
+      console.log(event.target[0])
     },
     async getImg(){
       this.$getImage()

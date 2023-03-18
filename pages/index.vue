@@ -33,20 +33,20 @@
       </v-img>
     </v-col>
     <v-bottom-navigation height="150" v-model="value" fixed>
-        <v-form @submit.prevent="submitForm">
+        <!-- <v-form @submit.prevent="submitForm">
           <v-file-input label="Select file" v-model="file"></v-file-input>
           <v-btn type="submit">Submit</v-btn>
         </v-form>
-        <div>
+        <div> -->
           <form @submit.prevent="submitImage">
             <input type="file" @change="handleImageChange" ref="imageInput">
             <button type="submit">Enviar imagen chaat</button>
           </form>
-        </div>
-        <form action="https://patio.dev.cintelink.com.ar/back/images" method="POST" enctype="multipart/form-data">
+        <!-- </div> -->
+        <!-- <form action="https://patio.dev.cintelink.com.ar/back/images" method="POST" enctype="multipart/form-data">
           <input type="file" name="image_data" id="asd">
           <button class="d-block" type="submit">enviar img</button>
-        </form>
+        </form> -->
     </v-bottom-navigation>
   </v-row>
 </template>
@@ -89,15 +89,6 @@ export default {
       .catch(error => {
         console.log(error)
       })
-    },
-    submitForm(event){
-      console.log('submit 1')
-      console.log(this.file)
-      console.log(event.target[0])
-    },
-    submitForm2(event){
-      console.log('submit 2')
-      console.log(event.target[0])
     },
     async getImg(){
       this.$getImage()

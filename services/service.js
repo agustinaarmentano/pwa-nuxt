@@ -53,7 +53,8 @@ export default (context) => ({
   getImage(){
     return fetch('https://patio.dev.cintelink.com.ar/back/images', {
       method: 'GET',
-      mode: 'cors'
+      mode: 'cors',
+      credentials: 'include'
     })
     .then(response => response.json())
     .then(data => {
@@ -71,6 +72,7 @@ export default (context) => ({
     return fetch('https://patio.dev.cintelink.com.ar/back/images', {
       method: 'POST',
       mode: 'cors',
+      credentials:'include',
       headers: {
         'Content-Type': 'multipart/form-data'
       },

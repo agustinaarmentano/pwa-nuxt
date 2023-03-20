@@ -86,17 +86,6 @@ export default {
         method: 'GET',
         strategyOptions: { cacheableResponse: { statuses: [0, 200] } }
       },
-      {
-        urlPattern: 'https://patio.dev.cintelink.com.ar/back/images',
-        handler: 'networkFirst',
-        method: 'POST',
-        options: {
-          networkTimeoutSeconds: 10,
-          backgroundSync: {
-            name: 'my-sync-image-post'
-          }
-        }
-      }
     ],
     importScripts: [
       'custom-sw.js',

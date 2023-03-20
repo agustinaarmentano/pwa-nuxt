@@ -1,7 +1,7 @@
 
 const registerBackgroundSync = () => {
   navigator.serviceWorker.ready
-  .then(swRegistration => swRegistration.sync.register("post-send"))
+  .then(swRegistration => swRegistration.sync.register("my-sync-image-post"))
   .catch(err => console.log(err))
 }
 
@@ -60,28 +60,26 @@ export default (context) => ({
       console.log(data, 'datas')
       const datos = data.map(item => {
         const buffer = Buffer.from(item.image.data)
-        return {
-          type: item.image.contentType,
-          data: buffer
-        }
+        const blob = new Blob([buffer], { type: item.image.contentType });
+        return URL.createObjectURL(blob);
       })
       return datos
     });
   },
-  postImage(formData){
-    return fetch('https://patio.dev.cintelink.com.ar/back/images', {
+  postImage(image){
+    const formData = new FormData()
+    formData.append('image_data', image)
+
+    fetch('https://patio.dev.cintelink.com.ar/back/images', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      },
-      body: formData,
+      body: formData
     })
-    .then(async (response) => {
-      const data = await response.json();
-      console.log(data);
+    .then(response => {
+      console.log(response.json())
     })
-    .catch(async (err) => {
-      console.log(err);
-    });
+    .catch(error => {
+      registerBackgroundSync();
+      console.log(error)
+    })
   }
 })

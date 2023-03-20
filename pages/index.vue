@@ -109,30 +109,13 @@ export default {
       this.image = event.target.files[0]
     },
     submitImage() {
-      const formData = new FormData()
-      formData.append('image_data', this.image)
-
-      fetch('https://patio.dev.cintelink.com.ar/back/images', {
-        method: 'POST',
-        body: formData
-      })
-      .then(response => {
-        console.log(response.json())
-      })
-      .catch(error => {
-        console.log(error)
-      })
+      this.$postImage(this.image)
     },
     async getImg(){
       this.overlay = true;
       this.$getImage()
       .then((result) => {
-        this.imgBackend = result
-        console.log(this.imgBackend)
-        this.imgNoBuffer = this.imgBackend.map((item) => {
-          const blob = new Blob([item.data], { type: item.type });
-          return URL.createObjectURL(blob);
-        })
+        this.imgNoBuffer = result
         this.overlay = false;
       })
     },

@@ -132,7 +132,7 @@ export default {
           const blob = new Blob([item.data], { type: item.type });
           return URL.createObjectURL(blob);
         })
-        this.overlay = this.imgNoBuffer ? false : true;
+        this.overlay = false;
       })
     },
   },

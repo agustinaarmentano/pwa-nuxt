@@ -34,6 +34,7 @@
         </v-img>
       </v-col>
       <v-bottom-navigation height="80" v-model="value" fixed>
+            <h1 v-if="sync">SYNC CON TAG EXISTENTE</h1>
             <v-dialog
               v-model="dialog"
               persistent

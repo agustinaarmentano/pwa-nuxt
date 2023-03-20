@@ -24,6 +24,10 @@ self.addEventListener("push", (e) => {
 
 })
 self.addEventListener("sync", async (e) => {
+  if(e.tag === 'my-sync-image-post'){
+    console.log('evento sync con el tag de my-sync-image-post')
+    alertarSync()
+  }
   if(e.tag === 'post-send'){
     alertarSync()
   }

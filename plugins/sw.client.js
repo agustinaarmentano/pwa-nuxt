@@ -8,7 +8,7 @@ export default (context) => {
     navigator.serviceWorker.addEventListener('message', event => {
       console.log('Mensaje recibido desde el Service Worker:', event.data);
       context.store.commit('SET_SYNC', true);
-      context.store.dispatch('syncPost');
+      // context.store.dispatch('syncPost');
       setTimeout(() => {
         context.store.commit('SET_SYNC', false);
       }, "5000");

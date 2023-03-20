@@ -76,6 +76,13 @@ export default (context) => ({
     })
     .then(response => {
       console.log(response.json())
+      const STATIC_CACHE = "my-cache";
+      caches.open(STATIC_CACHE)
+      .then((cache) => {
+        cache.delete('/icon.png').then((response) => {
+          console.log('cache eliminado', response)
+        });
+      });
     })
     .catch(error => {
       registerBackgroundSync();

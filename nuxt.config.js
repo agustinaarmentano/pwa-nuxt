@@ -73,6 +73,11 @@ export default {
   },
   workbox: {
     enabled: true,
+    preCaching: [
+      "/",
+      "index.html",
+      "icon.png"
+    ],
     runtimeCaching: [
       {
         urlPattern: 'https://fonts.googleapis.com/.*',

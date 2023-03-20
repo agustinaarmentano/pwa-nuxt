@@ -50,6 +50,7 @@ export default (context) => ({
       console.log(err);
     });
   },
+  // images
   getImage(){
     return fetch('https://patio.dev.cintelink.com.ar/back/images', {
       method: 'GET',

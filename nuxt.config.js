@@ -81,13 +81,7 @@ export default {
         strategyOptions: { cacheableResponse: { statuses: [0, 200] } }
       },
       {
-        urlPattern: 'https://fastly.picsum.photos/.*',
-        handler: 'cacheFirst',
-        method: 'GET',
-        strategyOptions: { cacheableResponse: { statuses: [0, 200] } }
-      },
-      {
-        urlPattern: 'https://picsum.photos/.*',
+        urlPattern: 'https://patio.dev.cintelink.com.ar/back/images',
         handler: 'cacheFirst',
         method: 'GET',
         strategyOptions: { cacheableResponse: { statuses: [0, 200] } }

@@ -110,6 +110,9 @@ export default {
     },
     submitImage() {
       this.$postImage(this.image)
+      .then (
+        this.getImg()
+      )
     },
     async getImg(){
       this.overlay = true;

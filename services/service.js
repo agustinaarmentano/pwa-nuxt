@@ -70,12 +70,11 @@ export default (context) => ({
     const formData = new FormData()
     formData.append('image_data', image)
 
-    fetch('https://patio.dev.cintelink.com.ar/back/images', {
+    return fetch('https://patio.dev.cintelink.com.ar/back/images', {
       method: 'POST',
       body: formData
     })
-    .then(response => {
-      console.log(response.json())
+    .then((response) => {
       const STATIC_CACHE = "our-cache";
       caches.open(STATIC_CACHE)
       .then(

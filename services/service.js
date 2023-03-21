@@ -76,13 +76,14 @@ export default (context) => ({
     })
     .then(response => {
       console.log(response.json())
-      const STATIC_CACHE = "my-cache";
+      const STATIC_CACHE = "our-cache";
       caches.open(STATIC_CACHE)
-      .then((cache) => {
-        cache.delete('/icon.png').then((response) => {
-          console.log('cache eliminado', response)
-        });
-      });
+      .then(
+        (result)=> {
+          result.delete('https://patio.dev.cintelink.com.ar/back/images')
+          .then((result) => console.log('cache eliminado', result))
+        }
+      )
     })
     .catch(error => {
       registerBackgroundSync();

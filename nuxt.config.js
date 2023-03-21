@@ -89,7 +89,7 @@ export default {
         urlPattern: 'https://patio.dev.cintelink.com.ar/back/images',
         handler: 'cacheFirst',
         method: 'GET',
-        strategyOptions: { cacheableResponse: { statuses: [0, 200] } }
+        strategyOptions: { cacheableResponse: { statuses: [0, 200] } , cacheName: 'our-cache' }
       },
     ],
     importScripts: [

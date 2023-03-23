@@ -8,6 +8,11 @@ const APP_SHELL = [
   "icon.png"
 ];
 
+if (!self.IDBKeyRange) {
+  console.log('no existe IDKeyRange')
+  self.IDBKeyRange = self.IDBKeyRange || self.webkitIDBKeyRange || self.msIDBKeyRange;
+}
+
 self.addEventListener("install", (e) => {
   const cacheStatic = caches
     .open(STATIC_CACHE)

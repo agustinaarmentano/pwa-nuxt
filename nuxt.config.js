@@ -87,9 +87,28 @@ export default {
       },
       {
         urlPattern: 'https://patio.dev.cintelink.com.ar/back/images',
-        handler: 'cacheFirst',
+        handler: 'NetworkFirst',
         method: 'GET',
         strategyOptions: { cacheableResponse: { statuses: [0, 200] } , cacheName: 'our-cache' }
+      },
+      {
+        urlPattern: 'https://patio.dev.cintelink.com.ar/back/images',
+        handler: 'NetworkOnly',
+        method: 'POST',
+        strategyPlugins: [
+          {
+            use: 'BackgroundSync',
+            config:[
+              {
+                "name":"myQueueName",
+              },
+              {
+                "forceSyncFallback": true,
+                "maxRetentionTime": 24 * 60 // retiene las solicitudes fallidas durante 24 horas
+              }
+            ]
+          }
+        ]
       },
     ],
     importScripts: [

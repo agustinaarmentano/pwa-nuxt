@@ -1,7 +1,7 @@
 
 const registerBackgroundSync = () => {
   navigator.serviceWorker.ready
-  .then(swRegistration => swRegistration.sync.register("my-sync-image-post"))
+  .then(swRegistration => swRegistration.sync.register("my-post-queue"))
   .catch(err => console.log(err))
 }
 
@@ -75,14 +75,14 @@ export default (context) => ({
       body: formData
     })
     .then((response) => {
-      const STATIC_CACHE = "our-cache";
-      caches.open(STATIC_CACHE)
-      .then(
-        (result)=> {
-          result.delete('https://patio.dev.cintelink.com.ar/back/images')
-          .then((result) => console.log('cache eliminado', result))
-        }
-      )
+      // const STATIC_CACHE = "our-cache";
+      // caches.open(STATIC_CACHE)
+      // .then(
+      //   (result)=> {
+      //     result.delete('https://patio.dev.cintelink.com.ar/back/images')
+      //     .then((result) => console.log('cache eliminado', result))
+      //   }
+      // )
     })
     .catch(error => {
       registerBackgroundSync();

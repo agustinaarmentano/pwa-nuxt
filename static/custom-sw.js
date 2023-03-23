@@ -24,7 +24,11 @@ self.addEventListener("push", (e) => {
 
 })
 self.addEventListener("sync", async (e) => {
-  if(e.tag === 'my-sync-image-post'){
+  if(e.tag === 'my-post-queue'){
+    // const queue = self.workbox.backgroundSync.getQueue('myQueueName');
+    // console.log('my queueses', queue)
+    // const failedRequests = await queue.getAll();
+    // console.log(failedRequests, 'failed queseses')
     console.log('evento sync con el tag de my-sync-image-post')
     alertarSync()
   }

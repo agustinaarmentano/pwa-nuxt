@@ -25,12 +25,12 @@ export default (context) => ({
         const data = await response.json()
         setTimeout(() => {
           this.$store.commit('SET_POST_SUCCESS', false);
-        }, "4000");
+        }, "5000");
         console.log(data)
       })
       .catch(async (err) => {
         console.log(err);
-        registerBackgroundSync();
+        // registerBackgroundSync();
       });
   },
   postSync(body){

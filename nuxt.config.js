@@ -99,12 +99,10 @@ export default {
           {
             use: 'BackgroundSync',
             config:[
+              "myQueueName",
               {
-                "name":"myQueueName",
-              },
-              {
-                "forceSyncFallback": true,
-                "maxRetentionTime": 24 * 60 // retiene las solicitudes fallidas durante 24 horas
+                forceSyncFallback: true,
+                maxRetentionTime: 24 * 60 // retiene las solicitudes fallidas durante 24 horas
               }
             ]
           }

@@ -1,18 +1,21 @@
 <template>
   <div>
     <v-row v-if="!overlay">
-      <v-alert
+      <v-dialog
         v-if="post_success"
-        type="success"
-      ></v-alert>
-      <v-btn @click="postApi">
-        post api
-      </v-btn>
-      <div v-if="imageUrl">
-        <v-img :src="imageUrl" max-height="500" max-width="500"> </v-img>
-      </div>
-      <div>
-      </div>
+        width="300px"
+        v-model="modal"
+        id="dialog-modal"
+      >
+        <v-card id="card-modal" class="text-center pa-4">
+          <!--Si tiene imagen-->
+          <div class="container-modal-con-image">
+            <!-- <img id="image-modal" src="~/assets/check.svg" alt="Imagen modal"/> -->
+            <h4 class="font-weight-bold green-text mt-1">Imagen enviada con exito</h4>
+            <v-icon x-large color="green" >mdi-check-circle-outline</v-icon>
+          </div>
+        </v-card>
+      </v-dialog>
       <v-col
         v-for="item in imgNoBuffer"
         :key="item"
@@ -41,7 +44,6 @@
         </v-img>
       </v-col>
       <v-bottom-navigation height="80" v-model="value" fixed>
-            <h1 v-if="sync">SYNC CON TAG EXISTENTE</h1>
             <v-dialog
               v-model="dialog"
               persistent
@@ -94,40 +96,25 @@ export default {
   name: 'IndexPage',
   data() {
     return {
-      imgBackend: null,
       imgNoBuffer: null,
       overlay: null,
       image: null,
-      form: {
-        title: '',
-        body: '',
-        userId: 1,
-      },
-      imageUrl: '',
       dialog: false,
+      modal: true
     }
   },
   created() {
     this.getImg()
   },
   methods:{
-    postApi(){
-      this.$post({
-      "userId": 1,
-      "id": 1,
-      "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
-      "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
-      })
-    },
-    // chat
     handleImageChange(event) {
       this.image = event.target.files[0]
     },
     submitImage() {
       this.$postImage(this.image)
-      // .then (
-      //   this.getImg()
-      // )
+      .then(() => {
+        this.modal =  true;
+      })
     },
     async getImg(){
       this.overlay = true;

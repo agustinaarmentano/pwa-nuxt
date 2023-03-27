@@ -74,15 +74,11 @@ export default (context) => ({
       method: 'POST',
       body: formData
     })
-    .then((response) => {
-      // const STATIC_CACHE = "our-cache";
-      // caches.open(STATIC_CACHE)
-      // .then(
-      //   (result)=> {
-      //     result.delete('https://patio.dev.cintelink.com.ar/back/images')
-      //     .then((result) => console.log('cache eliminado', result))
-      //   }
-      // )
+    .then(() => {
+      this.$store.commit('SET_POST_SUCCESS', true);
+      setTimeout(() => {
+        this.$store.commit('SET_POST_SUCCESS', false);
+      }, "5000");
     })
     .catch(error => {
       registerBackgroundSync();

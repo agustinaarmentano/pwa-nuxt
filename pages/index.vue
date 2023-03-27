@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-row v-if="!overlay">
+    <v-row v-if="!overlay && !post_loading">
       <v-dialog
         v-if="post_success"
         width="300px"
@@ -82,7 +82,7 @@
             </v-dialog>
       </v-bottom-navigation>
     </v-row>
-    <v-overlay :value="overlay">
+    <v-overlay :value="overlay || post_loading">
       <v-progress-circular
         indeterminate
         size="64"
@@ -111,6 +111,7 @@ export default {
       this.image = event.target.files[0]
     },
     submitImage() {
+      this.$store.commit('SET_POST_LOADING', true);
       this.$postImage(this.image)
       .then(() => {
         this.modal =  true;

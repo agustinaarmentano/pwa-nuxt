@@ -75,6 +75,7 @@ export default (context) => ({
       body: formData
     })
     .then(() => {
+      this.$store.commit('SET_POST_LOADING', false);
       this.$store.commit('SET_POST_SUCCESS', true);
       setTimeout(() => {
         this.$store.commit('SET_POST_SUCCESS', false);

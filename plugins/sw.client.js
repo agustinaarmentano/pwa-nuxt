@@ -16,6 +16,7 @@ export default (context) => {
       // console.log(requests, 'requests de backgroundSync')
 
       console.log('Mensaje recibido desde el Service Worker:', event.data);
+      context.store.commit('SET_POST_LOADING', false);
       context.store.commit('SET_POST_SUCCESS', true);
       // context.store.dispatch('syncPost');
       setTimeout(() => {

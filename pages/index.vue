@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-row v-if="!overlay && !post_loading">
+    <v-row v-if="!overlay && !post_loading" class="mb-16 pb-4">
       <v-dialog
         v-if="post_success"
         width="300px"
@@ -43,45 +43,45 @@
           </template>
         </v-img>
       </v-col>
-      <v-bottom-navigation height="80" v-model="value" fixed>
-            <v-dialog
-              v-model="dialog"
-              persistent
-              max-width="600px"
-            >
-              <template v-slot:activator="{ on, attrs }">
-                <v-btn
-                  height="100%"
-                  value="recent"
-                  v-bind="attrs"
-                  v-on="on">
-                  <v-icon x-large >mdi-camera-plus</v-icon>
-                </v-btn>
-              </template>
-              <v-card>
-                <v-card-title>
-                  <span class="text-h5">Subi una nueva imagen</span>
-                </v-card-title>
-                <v-card-text>
-                  <v-container>
-                    <form @submit.prevent="submitImage">
-                      <v-row>
-                        <v-col cols="12">
-                          <input type="file" @change="handleImageChange" ref="imageInput">
-                        </v-col>
-                        <v-col cols="12" class="justify-end">
-                          <v-btn @click="dialog = false">Cerrar</v-btn>
-                          <v-btn type="submit" @click="dialog = false">Subir</v-btn>
-                        </v-col>
-                      </v-row>
-                    </form>
-                  </v-container>
-                  <small>*indicates required field</small>
-                </v-card-text>
-              </v-card>
-            </v-dialog>
-      </v-bottom-navigation>
     </v-row>
+    <v-bottom-navigation v-if="!overlay && !post_loading" height="80" v-model="value" fixed>
+          <v-dialog
+            v-model="dialog"
+            persistent
+            max-width="600px"
+          >
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn
+                height="100%"
+                value="recent"
+                v-bind="attrs"
+                v-on="on">
+                <v-icon x-large >mdi-camera-plus</v-icon>
+              </v-btn>
+            </template>
+            <v-card>
+              <v-card-title>
+                <span class="text-h5">Subi una nueva imagen</span>
+              </v-card-title>
+              <v-card-text>
+                <v-container>
+                  <form @submit.prevent="submitImage">
+                    <v-row>
+                      <v-col cols="12">
+                        <input type="file" @change="handleImageChange" ref="imageInput">
+                      </v-col>
+                      <v-col cols="12" class="justify-end">
+                        <v-btn @click="dialog = false">Cerrar</v-btn>
+                        <v-btn type="submit" @click="dialog = false">Subir</v-btn>
+                      </v-col>
+                    </v-row>
+                  </form>
+                </v-container>
+                <small>*indicates required field</small>
+              </v-card-text>
+            </v-card>
+          </v-dialog>
+    </v-bottom-navigation>
     <v-overlay :value="overlay || post_loading">
       <v-progress-circular
         indeterminate
